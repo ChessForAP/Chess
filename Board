@@ -6,7 +6,7 @@ public class Board
         
     }
     
-    public String to String()
+    public String toString()
     {
        return board;
     }
