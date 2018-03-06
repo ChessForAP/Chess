@@ -6,13 +6,13 @@ public class King extends Chess
    private King(String color)
    {
        this.color= color;
-       Chess.num+=1;
+       super.num+=1;
    }
    public String toString()
    {
         return color+"Ki    ";
    }
-   public static King creat(String color)
+   public static King create(String color)
    {
         if(checkNum())
         {
