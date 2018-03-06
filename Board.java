@@ -1,7 +1,15 @@
+
+/**
+ * Write a description of class Board here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
 public class Board
 {
     private Chess[][] table=new Chess[8][8];
-    public Board(){       
+    public Board(){
+        
         for(int i=0;i<8;i++){
             table[1][i]=new Pawn("W");
             table[6][i]=new Pawn("B");
@@ -9,22 +17,22 @@ public class Board
                 table[j][i]=new Chess();
             }
         }
-        table[0][0]=new Rook("W");
-        table[0][7]=new Rook("W");
-        table[7][0]=new Rook("B");
-        table[7][7]=new Rook("B");
-        table[0][1]=new Knight("W");
-        table[0][6]=new Knight("W");
-        table[7][1]=new Knight("B");
-        table[7][6]=new Knight("B");
-        table[0][2]=new Bishop("W");
-        table[0][5]=new Bishop("W");
-        table[7][2]=new Bishop("B");
-        table[7][5]=new Bishop("B");
-        table[0][3]=new Queen("W");
-        table[7][3]=new Queen("B");
-        table[0][4]=new King("W");
-        table[7][4]=new King("B");
+        table[0][0]=Rook.create("W");
+        table[0][7]=Rook.create("W");
+        table[7][0]=Rook.create("B");
+        table[7][7]=Rook.create("B");
+        table[0][1]=Knight.create("W");
+        table[0][6]=Knight.create("W");
+        table[7][1]=Knight.create("B");
+        table[7][6]=Knight.create("B");
+        table[0][2]=Bishop.create("W");
+        table[0][5]=Bishop.create("W");
+        table[7][2]=Bishop.create("B");
+        table[7][5]=Bishop.create("B");
+        table[0][3]=Queen.create("W");
+        table[7][3]=Queen.create("B");
+        table[0][4]=Queen.create("W");
+        table[7][4]=Queen.create("B");
     }
     public void printOut(){
         for(int i=0;i<8;i++){
