@@ -6,13 +6,13 @@ public class Queen extends Chess
    private Queen(String color)
    {
        this.color= color;
-       Chess.num+=1;
+       super.num+=1;
    }
    public String toString()
    {
         return color+"Q     ";
    }
-   public static Queen creat(String color)
+   public static Queen create(String color)
    {
         if(checkNum())
         {
