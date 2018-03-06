@@ -6,13 +6,13 @@ public class Rook extends Chess
     private Rook(String color)
    {
        this.color= color;
-       Chess.num+=1;
+       super.num+=1;
    }
    public String toString()
    {
         return color+"R     ";
    }
-   public static Rook creat(String color)
+   public static Rook create(String color)
    {
         if(checkNum())
         {
