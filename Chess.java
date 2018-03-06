@@ -1,27 +1,22 @@
-
-/**
- * 在这里给出对类 Chess 的描述。
- * 
- * @作者（你的名字）
- * @版本（一个版本号或者一个日期）
- */
 public class Chess
-{  
+{
     private String color;
     protected static int num=0;
     Chess(){
         
         
     }
-    public void add(){
+    public static boolean checkNum(){
+        
         if(num<32){
-            this.num++;
+            return true;
         }
         else{
-            throw new Error("more than 32 chess");
+            return false;
         }
     }
     public String toString(){
         return "       ";
     }
+    
 }
