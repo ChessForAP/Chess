@@ -4,7 +4,7 @@ public class Pawn extends Chess
     private int x;
     private int y;
     private boolean var=true;
-    public Pawn(String color,int x)
+    private Pawn(String color,int x)
     {
         this.color=color;
         if(color.equals("W")){
@@ -14,6 +14,17 @@ public class Pawn extends Chess
             this.y=6;
         }
         this.x=x;
+    }
+    public static Pawn create(String color)
+    {
+        if(checkNum())
+        {
+            return new Pawn(color);
+        }
+        else
+        {
+            throw new Error("more than 32");
+        }
     }
     public String toString(){
         return color+"P     ";
