@@ -11,8 +11,8 @@ public class Board
     public Board(){
         
         for(int i=0;i<8;i++){
-            table[1][i]=new Pawn("W");
-            table[6][i]=new Pawn("B");
+            table[1][i]=Pawn.create("W");
+            table[6][i]=Pawn.create("B");
             for(int j=2;j<6;j++){
                 table[j][i]=new Chess();
             }
