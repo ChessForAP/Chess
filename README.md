@@ -1,2 +1,2 @@
 # Chess
-# group member： Youlanda Su
+# group member： Yolanda Su   Violet Yu   Carol Li  Zoe Du   Kevin Jiang
