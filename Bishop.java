@@ -10,7 +10,7 @@ public class Bishop extends Chess
    }
    public String toString()
    {
-        return color+”B     ";
+        return color+"B     ";
    }
    public static Bishop create(String color)
    {
