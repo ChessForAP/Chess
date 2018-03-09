@@ -1,10 +1,3 @@
-
-/**
- * Write a description of class Board here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Board
 {
     private Chess[][] table=new Chess[8][8];
@@ -47,6 +40,55 @@ public class Board
         for(int i=65;i<73;i++){
             System.out.print((char)i);
             System.out.print("      ");
+        }
+    }
+    public void changePosition(String str1,String str2,String color){
+        char[] ip=str1.toCharArray();
+        char[] fp=str2.toCharArray();
+        int x1=((int)ip[0]-97);
+        int y1=((int)fp[1]-49);
+        int x2=((int)ip[0]-97);
+        int y2=((int)fp[1]-49);
+        if(check(x1,x2,y1,y2)){
+            throw new Error("illigal moving"); 
+        }
+        if(!(table[y1][x1].getColor().equals(color))){
+            throw new Error("not your chess");
+        }
+        if(table[y2][x2].getColor().equals(color)){
+            throw new Error("can't land on your chess");
+        }
+        table[y1][x1].setPosition(x2,y2);
+        table[y2][x2]=table[y1][x1];
+        table[y1][x1]=new Chess();
+        this.x=x2;
+        this.y=y2;
+    }
+    private boolean check(int x1,int x2,int y1,int y2){
+        if((Math.abs(x1-x2)==2 && Math.abs(y1-y2)==1)||(Math.abs(x1-x2)==1 && Math.abs(y1-y2)==2)){
+            return false;
+        }
+        else{
+            while(true){
+                if(Math.abs(x1-x2)<=1 || Math.abs(y1-y2)<=1){
+                    return false;
+                }
+                if(x1<x2-1){
+                    x1++;
+                }
+                else if(x1>x2+1){
+                    x1--;
+                }
+                if(y1<y2-1){
+                    y1++;
+                }
+                else if(y1>y2+1){
+                    y1--;
+                }
+                if(!(table[y1][x1].getColor().equals("none"))){
+                    return true;
+                }
+            }
         }
     }
 }
