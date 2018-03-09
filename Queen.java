@@ -22,4 +22,22 @@ public class Queen extends Chess
             throw new Error("more than 32 ");
         }
    }
+   public void setPosition(int x,int y){
+        if(0<=x && x<=7 && y<=7 && 0<=y){
+            if(this.x-x==this.y-y || this.x-x==y-this.y){
+                this.x=x;
+                this.y=y;
+            }
+            else if(this.x==x || this.y==y){
+                this.x=x;
+                this.y=y;
+            }
+            else{
+                throw new Error("illegal moving");
+            }
+        }
+        else{
+            throw new Error("out of table");
+        }
+    }
 }
