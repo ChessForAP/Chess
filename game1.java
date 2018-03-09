@@ -28,6 +28,6 @@ public class game1
         Scanner condition = new Scanner(System.in);
         System.out.println(player1.getName()+":");
         String str=condition.next();
-        table.changePosition(str,player1.getColor());
+        table.changePosition(str.substring(0,2),str.substring(3,5),player1.getColor());
     }
 }
