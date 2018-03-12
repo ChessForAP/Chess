@@ -1,5 +1,5 @@
 import java.util.*;
-public class game1
+public class Game
 {
     public void game(){
         Scanner scanner1 = new Scanner(System.in);
@@ -8,7 +8,7 @@ public class game1
         Scanner scanner2 = new Scanner(System.in);
         System.out.println("Please Enter the name of User2 :");
         Player player2= new Player("B",scanner2.next());
-        Table table=new Table();
+        Board table=new board();
         while(true){
             table.printOut();
             move(table,player1);
