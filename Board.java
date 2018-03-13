@@ -4,24 +4,24 @@ public class Board
     public Board(){
         
         for(int i=0;i<8;i++){
-            table[1][i]=Pawn.create("W");
-            table[6][i]=Pawn.create("B");
+            table[1][i]=Pawn.create("W",i);
+            table[6][i]=Pawn.create("B",i);
             for(int j=2;j<6;j++){
                 table[j][i]=new Chess();
             }
         }
-        table[0][0]=Rook.create("W");
-        table[0][7]=Rook.create("W");
-        table[7][0]=Rook.create("B");
-        table[7][7]=Rook.create("B");
-        table[0][1]=Knight.create("W");
-        table[0][6]=Knight.create("W");
-        table[7][1]=Knight.create("B");
-        table[7][6]=Knight.create("B");
-        table[0][2]=Bishop.create("W");
-        table[0][5]=Bishop.create("W");
-        table[7][2]=Bishop.create("B");
-        table[7][5]=Bishop.create("B");
+        table[0][0]=Rook.create("W",0);
+        table[0][7]=Rook.create("W",7);
+        table[7][0]=Rook.create("B",0);
+        table[7][7]=Rook.create("B",7);
+        table[0][1]=Knight.create("W",1);
+        table[0][6]=Knight.create("W",6);
+        table[7][1]=Knight.create("B",1);
+        table[7][6]=Knight.create("B",6);
+        table[0][2]=Bishop.create("W",2);
+        table[0][5]=Bishop.create("W",5);
+        table[7][2]=Bishop.create("B",2);
+        table[7][5]=Bishop.create("B",5);
         table[0][3]=Queen.create("W");
         table[7][3]=Queen.create("B");
         table[0][4]=Queen.create("W");
@@ -61,8 +61,6 @@ public class Board
         table[y1][x1].setPosition(x2,y2);
         table[y2][x2]=table[y1][x1];
         table[y1][x1]=new Chess();
-        this.x=x2;
-        this.y=y2;
     }
     private boolean check(int x1,int x2,int y1,int y2){
         if((Math.abs(x1-x2)==2 && Math.abs(y1-y2)==1)||(Math.abs(x1-x2)==1 && Math.abs(y1-y2)==2)){
