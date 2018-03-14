@@ -1,10 +1,8 @@
 public class Chess
 {
-    private String color;
+    private String color="none";
     protected static int num=0;
     Chess(){
-        
-        
     }
     public static boolean checkNum(){
         
@@ -18,5 +16,9 @@ public class Chess
     public String toString(){
         return "       ";
     }
-    
+    public String getColor(){
+        return this.color;
+    }
+    public void setPosition(int x,int y){
+    }
 }

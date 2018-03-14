@@ -3,20 +3,27 @@ public class Knight extends Chess
     private int x;
     private int y;
     private String color;
-    private Knight(String color)
+    private Knight(String color,int x)
     {
         this.color=color;
+        if(color.equals("W")){
+            this.y=0;
+        }
+        else{
+            this.y=7;
+        }
         super.num+=1;
+        this.x=x;
     }
     public String toString()
     {
         return color+"Kn    ";
     }
-    public static Knight create(String color)
+    public static Knight create(String color,int x)
     {
         if(checkNum())
         {
-            return new Knight(color);
+            return new Knight(color,x);
         }
         else
         {

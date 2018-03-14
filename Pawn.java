@@ -14,12 +14,13 @@ public class Pawn extends Chess
             this.y=6;
         }
         this.x=x;
+        Chess.num+=1;
     }
-    public static Pawn create(String color)
+    public static Pawn create(String color,int x)
     {
         if(checkNum())
         {
-            return new Pawn(color);
+            return new Pawn(color,x);
         }
         else
         {

@@ -6,6 +6,13 @@ public class Queen extends Chess
    private Queen(String color)
    {
        this.color= color;
+       if(color.equals("W")){
+            this.y=0;
+        }
+        else{
+            this.y=7;
+        }
+       this.x=3;
        super.num+=1;
    }
    public String toString()

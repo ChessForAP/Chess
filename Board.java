@@ -42,18 +42,15 @@ public class Board
             System.out.print("      ");
         }
     }
-    public void changePosition(String str1,String str2,String color){
+    public void move(String str1,String str2,String color){
         char[] ip=str1.toCharArray();
         char[] fp=str2.toCharArray();
         int x1=((int)ip[0]-97);
-        int y1=((int)fp[1]-49);
-        int x2=((int)ip[0]-97);
+        int y1=((int)ip[1]-49);
+        int x2=((int)fp[0]-97);
         int y2=((int)fp[1]-49);
         if(check(x1,x2,y1,y2)){
             throw new Error("illigal moving"); 
-        }
-        if(!(table[y1][x1].getColor().equals(color))){
-            throw new Error("not your chess");
         }
         if(table[y2][x2].getColor().equals(color)){
             throw new Error("can't land on your chess");

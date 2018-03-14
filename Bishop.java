@@ -3,20 +3,27 @@ public class Bishop extends Chess
     private String color;
     private int x;
     private int y;
-    private Bishop(String color)
+    private Bishop(String color,int x)
    {
        this.color= color;
+       if(color.equals("W")){
+            this.y=0;
+        }
+        else{
+            this.y=7;
+        }
        super.num+=1;
+       this.x=x;
    }
    public String toString()
    {
         return color+"B     ";
    }
-   public static Bishop create(String color)
+   public static Bishop create(String color,int x)
    {
         if(checkNum())
         {
-            return new Bishop(color);
+            return new Bishop(color,x);
         }
         else{
             throw new Error("more than 32 ");

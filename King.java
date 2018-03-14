@@ -3,20 +3,27 @@ public class King extends Chess
    private int x;
    private int y;
    private String color;
-   private King(String color)
+   private King(String color,int x)
    {
        this.color= color;
+       if(color.equals("W")){
+            this.y=0;
+        }
+        else{
+            this.y=7;
+        }
        super.num+=1;
+       this.x=x;
    }
    public String toString()
    {
         return color+"Ki    ";
    }
-   public static King create(String color)
+   public static King create(String color,int x)
    {
         if(checkNum())
         {
-            return new King(color);
+            return new King(color,x);
         }
         else{
             throw new Error("more than 32 ");
@@ -27,7 +34,6 @@ public class King extends Chess
             if(Math.abs(this.x-x)==1 || Math.abs(this.y-y)==1){
                 this.x=x;
                 this.y=y;
-                var=false;
             }
             else{
                 throw new Error("illegal moving");
