@@ -1,4 +1,4 @@
-public class King extends Chess
+public class King extends Piece
 {
    private int x;
    private int y;

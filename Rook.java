@@ -1,4 +1,4 @@
-public class Rook extends Chess
+public class Rook extends Piece
 {
     private String color;
     private int x;

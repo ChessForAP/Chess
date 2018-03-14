@@ -1,3 +1,4 @@
+import java.util.*;
 public class Player
 {
     private String color;
@@ -13,5 +14,11 @@ public class Player
     }
     public String getName(){
         return this.name;
+    }
+    public void move(Board table){
+        Scanner condition = new Scanner(System.in);
+        System.out.println(name+":");
+        String str=condition.next();
+        table.move(str.substring(0,2),str.substring(3,5),color);
     }
 }

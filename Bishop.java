@@ -1,4 +1,4 @@
-public class Bishop extends Chess
+public class Bishop extends Piece
 {
     private String color;
     private int x;

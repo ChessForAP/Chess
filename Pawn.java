@@ -1,4 +1,4 @@
-public class Pawn extends Chess
+public class Pawn extends Piece
 {
     private String color;
     private int x;
@@ -14,7 +14,7 @@ public class Pawn extends Chess
             this.y=6;
         }
         this.x=x;
-        Chess.num+=1;
+        Piece.num+=1;
     }
     public static Pawn create(String color,int x)
     {
@@ -33,12 +33,12 @@ public class Pawn extends Chess
     public void setPosition(int x,int y){
         if(0<=x && x<=7 && y<=7 && 0<=y){
             if(color.equals("W")){
-                if(y-this.y==1){
+                if(y-this.y==1 && this.x-x==0){
                     this.x=x;
                     this.y=y;
                     var=false;
                 }
-                else if(y-this.y==2 && var){
+                else if(y-this.y==2 && var && this.x-x==0){
                     this.x=x;
                     this.y=y;
                     var=false;
@@ -48,12 +48,12 @@ public class Pawn extends Chess
                 }
             }
             else{
-                if(this.y-y==1){
+                if(this.y-y==1 && this.x-x==0){
                     this.x=x;
                     this.y=y;
                     var=false;
                 }
-                else if(this.y-y==2 && var){
+                else if(this.y-y==2 && var && this.x-x==0){
                     this.x=x;
                     this.y=y;
                     var=false;
@@ -72,7 +72,8 @@ public class Pawn extends Chess
             return 1;
         }
         if(color.equals("W")){
-                if(y-this.y==1){
+               
+            if(y-this.y==1){
                     return 2;
                 }
                 else if(y-this.y==2 && var){

@@ -1,13 +1,13 @@
 public class Board
 {
-    private Chess[][] table=new Chess[8][8];
+    private Piece[][] table=new Piece[8][8];
     public Board(){
         
         for(int i=0;i<8;i++){
             table[1][i]=Pawn.create("W",i);
             table[6][i]=Pawn.create("B",i);
             for(int j=2;j<6;j++){
-                table[j][i]=new Chess();
+                table[j][i]=new Piece();
             }
         }
         table[0][0]=Rook.create("W",0);
@@ -57,7 +57,7 @@ public class Board
         }
         table[y1][x1].setPosition(x2,y2);
         table[y2][x2]=table[y1][x1];
-        table[y1][x1]=new Chess();
+        table[y1][x1]=new Piece();
     }
     private boolean check(int x1,int x2,int y1,int y2){
         if((Math.abs(x1-x2)==2 && Math.abs(y1-y2)==1)||(Math.abs(x1-x2)==1 && Math.abs(y1-y2)==2)){

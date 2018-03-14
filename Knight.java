@@ -1,4 +1,4 @@
-public class Knight extends Chess
+public class Knight extends Piece
 {
     private int x;
     private int y;
