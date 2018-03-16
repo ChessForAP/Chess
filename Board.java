@@ -1,6 +1,6 @@
 public class Board
 {
-    private Piece[][] table=new Piece[8][8];
+    private static Piece[][] table=new Piece[8][8];
     public Board(){
         
         for(int i=0;i<8;i++){
@@ -27,22 +27,10 @@ public class Board
         table[0][4]=Queen.create("W");
         table[7][4]=Queen.create("B");
     }
-    public void printOut(){
-        for(int i=0;i<8;i++){
-            System.out.print((8-i)+"   ");
-            for(int j=0;j<8;j++){
-                System.out.print(table[7-i][j]);
-            }
-            System.out.println();
-            System.out.println();
-        }
-        System.out.print("    ");
-        for(int i=65;i<73;i++){
-            System.out.print((char)i);
-            System.out.print("      ");
-        }
+    public Piece[][] getBoard(){
+        return table;
     }
-    public void move(String str1,String str2,String color){
+    public static void move(String str1,String str2){
         char[] ip=str1.toCharArray();
         char[] fp=str2.toCharArray();
         int x1=((int)ip[0]-97);
@@ -52,14 +40,14 @@ public class Board
         if(check(x1,x2,y1,y2)){
             throw new Error("illigal moving"); 
         }
-        if(table[y2][x2].getColor().equals(color)){
+        if(table[y2][x2].getColor().equals(table[y1][x1].getColor())){
             throw new Error("can't land on your chess");
         }
         table[y1][x1].setPosition(x2,y2);
         table[y2][x2]=table[y1][x1];
         table[y1][x1]=new Piece();
     }
-    private boolean check(int x1,int x2,int y1,int y2){
+    private static boolean check(int x1,int x2,int y1,int y2){
         if((Math.abs(x1-x2)==2 && Math.abs(y1-y2)==1)||(Math.abs(x1-x2)==1 && Math.abs(y1-y2)==2)){
             return false;
         }
