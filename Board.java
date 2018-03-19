@@ -1,14 +1,17 @@
+
+/**
+ * Write a description of class Board here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
 public class Board
 {
     private static Piece[][] table=new Piece[8][8];
     public Board(){
-        
         for(int i=0;i<8;i++){
             table[1][i]=Pawn.create("W",i);
             table[6][i]=Pawn.create("B",i);
-            for(int j=2;j<6;j++){
-                table[j][i]=new Piece();
-            }
         }
         table[0][0]=Rook.create("W",0);
         table[0][7]=Rook.create("W",7);
@@ -24,8 +27,8 @@ public class Board
         table[7][5]=Bishop.create("B",5);
         table[0][3]=Queen.create("W");
         table[7][3]=Queen.create("B");
-        table[0][4]=Queen.create("W");
-        table[7][4]=Queen.create("B");
+        table[0][4]=King.create("W");
+        table[7][4]=King.create("B");
     }
     public Piece[][] getBoard(){
         return table;
@@ -40,12 +43,14 @@ public class Board
         if(check(x1,x2,y1,y2)){
             throw new Error("illigal moving"); 
         }
-        if(table[y2][x2].getColor().equals(table[y1][x1].getColor())){
-            throw new Error("can't land on your chess");
+        if(table[y2][x2]!=null && table[y1][x1].kill(x2,y2,table[y2][x2].getColor())==1){
+            if(table[y1][x1].kill(x2,y2,table[y2][x2].getColor())==2){
+                throw new Error("illigal moving");
+            }
         }
         table[y1][x1].setPosition(x2,y2);
         table[y2][x2]=table[y1][x1];
-        table[y1][x1]=new Piece();
+        table[y1][x1]=null;
     }
     private static boolean check(int x1,int x2,int y1,int y2){
         if((Math.abs(x1-x2)==2 && Math.abs(y1-y2)==1)||(Math.abs(x1-x2)==1 && Math.abs(y1-y2)==2)){
@@ -74,4 +79,5 @@ public class Board
             }
         }
     }
+    
 }
