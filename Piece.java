@@ -1,8 +1,17 @@
-public class Piece
+
+/**
+ * Write a description of class Chess here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public abstract class Piece
 {
-    private String color="none";
+    private String color;
     protected static int num=0;
     Piece(){
+        
+        
     }
     public static boolean checkNum(){
         
@@ -16,9 +25,12 @@ public class Piece
     public String toString(){
         return "       ";
     }
+    public void setPosition(int x,int y){
+    }
     public String getColor(){
         return this.color;
     }
-    public void setPosition(int x,int y){
+    public int kill(int x, int y, String str){
+        return 0;
     }
 }
