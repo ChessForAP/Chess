@@ -3,7 +3,7 @@ public class King extends Piece
    private int x;
    private int y;
    private String color;
-   private King(String color,int x)
+   private King(String color)
    {
        this.color= color;
        if(color.equals("W")){
@@ -13,17 +13,17 @@ public class King extends Piece
             this.y=7;
         }
        super.num+=1;
-       this.x=x;
+       
    }
    public String toString()
    {
         return color+"Ki    ";
    }
-   public static King create(String color,int x)
+   public static King create(String color)
    {
         if(checkNum())
         {
-            return new King(color,x);
+            return new King(color);
         }
         else{
             throw new Error("more than 32 ");
