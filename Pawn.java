@@ -31,9 +31,16 @@ public class Pawn extends Piece
         return color+"P     ";
     }
     public void setPosition(int x,int y){
+        
         if(0<=x && x<=7 && y<=7 && 0<=y){
+            
             if(color.equals("W")){
-                if(y-this.y==1 && this.x-x==0){
+                if(y-this.y==1&&Math.abs(x-this.x)==1){
+                    this.x=x;
+                    this.y=y;
+                    var=false;
+                }
+                else if(y-this.y==1 && this.x-x==0){
                     this.x=x;
                     this.y=y;
                     var=false;
@@ -73,10 +80,7 @@ public class Pawn extends Piece
         }
         if(color.equals("W")){
                
-            if(y-this.y==1){
-                    return 2;
-                }
-                else if(y-this.y==2 && var){
+            if(y-this.y==1&&Math.abs(x-this.x)==1){
                     return 2;
                 }
                 else{
@@ -84,16 +88,17 @@ public class Pawn extends Piece
                 }
         }
         else{
-                if(this.y-y==1){
-                    return 2;
-                }
-                else if(this.y-y==2 && var){
-                    return 2;
-                }
-                else{
-                    return 1;
-                }
+            if(this.y-y==1&&Math.abs(x-this.x)==1){
+                return 2;
+            }
+    
+            else{
+                return 1;
+            }
         }
+    }
+    public boolean checkfrount(int x,int y){
+        return true;
     }
     public String getColor(){
         return this.color;
