@@ -1,0 +1,6 @@
+public class test{
+  public void test(){
+    System.out.prinln();
+  }
+  //test
+}
