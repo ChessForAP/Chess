@@ -19,7 +19,7 @@ public class Queen extends Piece
    {
         return color+"Q     ";
    }
-   public static Queen create(String color)
+   public static Queen create(String color,int x)
    {
         if(checkNum())
         {
