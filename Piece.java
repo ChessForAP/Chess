@@ -1,18 +1,11 @@
-
-/**
- * Write a description of class Chess here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public abstract class Piece
 {
-    private String color;
+    private String color="none";
     protected static int num=0;
     Piece(){
-        
-        
     }
+    public abstract String toString();
+    public abstract void setPosition(int x,int y);
     public static boolean checkNum(){
         
         if(num<32){
@@ -22,15 +15,15 @@ public abstract class Piece
             return false;
         }
     }
-    public String toString(){
-        return "       ";
-    }
-    public void setPosition(int x,int y){
-    }
+    
     public String getColor(){
         return this.color;
     }
-    public int kill(int x, int y, String str){
-        return 0;
+    public int kill(int x,int y,String color){
+        return 1;
+    }
+    
+    public boolean checkfrount(int x,int y){
+        return false;
     }
 }
