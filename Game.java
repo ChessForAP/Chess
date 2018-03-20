@@ -34,7 +34,13 @@ public class Game
         for(int i=0;i<8;i++){
             System.out.print((8-i)+"   ");
             for(int j=0;j<8;j++){
-                System.out.print(board[7-i][j]);
+                if(board[7-i][j]==null)
+                {
+                    System.out.print("       ");
+                }
+                else{
+                    System.out.print(board[7-i][j]);
+                }
             }
             System.out.println();
             System.out.println();
