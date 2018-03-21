@@ -54,7 +54,7 @@ public class Board
         }
         else{
             while(true){
-                if(Math.abs(x1-x2)<=1 || Math.abs(y1-y2)<=1){
+                if(Math.abs(x1-x2)<=1 && Math.abs(y1-y2)<=1){
                     if(table[y2][x2]!=null && Math.abs(x1-x2)==0 && table[y1][x1].checkfrount(x1,y1)){
                         return true;
                     }
