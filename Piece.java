@@ -1,4 +1,4 @@
-//upload by Zoe Du--Violet Yu---Zoe Du--Yolanda Su
+//upload by Zoe Du--Violet Yu---Zoe Du--Yolanda Su--Kevin Jiang
 public abstract class Piece
 {
     private String color;
