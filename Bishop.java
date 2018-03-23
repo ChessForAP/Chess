@@ -1,4 +1,4 @@
-//upload by all of as--Zoe Du--Yolanda Su--Carol Li
+//upload by all of as--Zoe Du--Yolanda Su--Carol Li--Kevin Jiang
 public class Bishop extends Piece
 {
     private String color;
