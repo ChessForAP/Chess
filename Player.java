@@ -1,3 +1,4 @@
+//upload by Kevin Jiang--Violet Yu---Zoe Du
 public class Player
 {
     private String color;
@@ -14,7 +15,12 @@ public class Player
     public String getName(){
         return this.name;
     }
-    public void move(String str1,String str2){
-        Board.move(str1,str2);
+    public void move(String str1,String str2) throws Exception{
+        try{
+            Board.move(str1,str2);
+        }
+        catch(Exception e){
+            throw new Exception();
+        }
     }
 }

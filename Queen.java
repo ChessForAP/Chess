@@ -1,3 +1,4 @@
+//upload by Violet Yu--Kevin Jiang--Violet Yu--Carol Li
 public class Queen extends Piece
 {
    private int x;
@@ -15,13 +16,17 @@ public class Queen extends Piece
        this.x=3;
        super.num+=1;
    }
+   public String getColor(){
+        return color;
+    }
    public String toString()
    {
         return color+"Q     ";
    }
    public static Queen create(String color,int x)
    {
-        if(checkNum())
+        
+       if(checkNum())
         {
             return new Queen(color);
         }
@@ -29,7 +34,7 @@ public class Queen extends Piece
             throw new Error("more than 32 ");
         }
    }
-   public void setPosition(int x,int y){
+   public void setPosition(int x,int y) throws Exception{
         if(0<=x && x<=7 && y<=7 && 0<=y){
             if(this.x-x==this.y-y || this.x-x==y-this.y){
                 this.x=x;
@@ -40,7 +45,7 @@ public class Queen extends Piece
                 this.y=y;
             }
             else{
-                throw new Error("illegal moving");
+                throw new Exception();
             }
         }
         else{

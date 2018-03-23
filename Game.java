@@ -27,7 +27,13 @@ public class Game
         condition = new Scanner(System.in);
         System.out.println("to place:");
         String str2=condition.next();
-        player.move(str1,str2);
+        try{
+            player.move(str1,str2);
+        }
+        catch(Exception e){
+            System.out.println("illegal moving");
+            move(player);
+        }
     }
     public void printOutBoard(){
         Piece[][] board=table.getBoard();

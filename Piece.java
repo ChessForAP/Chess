@@ -1,11 +1,13 @@
+//upload by Zoe Du--Violet Yu---Zoe Du--Yolanda Su
 public abstract class Piece
 {
-    private String color="none";
+    private String color;
     protected static int num=0;
     Piece(){
     }
     public abstract String toString();
-    public abstract void setPosition(int x,int y);
+    public abstract String getColor();
+    public abstract void setPosition(int x,int y) throws Exception;
     public static boolean checkNum(){
         
         if(num<32){
@@ -15,15 +17,12 @@ public abstract class Piece
             return false;
         }
     }
-    
-    public String getColor(){
-        return this.color;
-    }
-    public int kill(int x,int y,String color){
-        return 1;
+    public int kill(int x,int y,String color)throws Exception{
+        
+        return 0;
     }
     
-    public boolean checkfrount(int x,int y){
+    public boolean checkFrount(){
         return false;
     }
 }

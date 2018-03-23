@@ -1,3 +1,4 @@
+//upload by Kevin Jiang--Violet Yu--Zoe Du--Yolanda Su--Zoe Du
 public class Pawn extends Piece
 {
     private String color;
@@ -30,57 +31,68 @@ public class Pawn extends Piece
     public String toString(){
         return color+"P     ";
     }
-    public void setPosition(int x,int y){
+    public void setPosition(int x,int y) throws Exception{
         
-        if(0<=x && x<=7 && y<=7 && 0<=y){
+        if(0<=x && x<=7 && y<=7 && 0<=y)
+        {//the moving is inside the board
             
             if(color.equals("W")){
-                if(y-this.y==1&&Math.abs(x-this.x)==1){
+                if(y-this.y==1 && Math.abs(x-this.x)==1){
                     this.x=x;
                     this.y=y;
-                    var=false;
                 }
-                else if(y-this.y==1 && this.x-x==0){
+                else if(y-this.y==1 && this.x-x==0)
+                {//move one step for everytime
                     this.x=x;
                     this.y=y;
-                    var=false;
                 }
-                else if(y-this.y==2 && var && this.x-x==0){
+                else if(y-this.y==2 && var && this.x-x==0)
+                {//check only move two step in first time
                     this.x=x;
                     this.y=y;
-                    var=false;
                 }
                 else{
-                    throw new Error("illegal moving");
+                    throw new Exception();
                 }
+                
             }
             else{
-                if(this.y-y==1 && this.x-x==0){
+                if(this.y-y==1 && Math.abs(x-this.x)==1){
                     this.x=x;
                     this.y=y;
-                    var=false;
+                }
+                else if(this.y-y==1 && this.x-x==0){
+                    this.x=x;
+                    this.y=y;
                 }
                 else if(this.y-y==2 && var && this.x-x==0){
                     this.x=x;
                     this.y=y;
-                    var=false;
                 }
                 else{
-                    throw new Error("illegal moving");
+                    throw new Exception();
                 }
             }
+            
+            if(var)
+            {//change the var after first time
+                var=false;
+            }
+                
         }
         else{
             throw new Error("out of table");
         }
     }
     public int kill(int x,int y,String color){
-        if(this.color.equals(color)){
+        if(this.color.equals(color))
+        {//cannot eat self piece
             return 1;
         }
-        if(color.equals("W")){
+        if(color.equals("B")){
                
-            if(y-this.y==1&&Math.abs(x-this.x)==1){
+            if(y-this.y==1&&Math.abs(x-this.x)==1)
+            {//only when towards the oblique
                     return 2;
                 }
                 else{
@@ -88,7 +100,8 @@ public class Pawn extends Piece
                 }
         }
         else{
-            if(this.y-y==1&&Math.abs(x-this.x)==1){
+            if(this.y-y==1&&Math.abs(x-this.x)==1)
+            {//only when towards the oblique
                 return 2;
             }
     
@@ -97,7 +110,8 @@ public class Pawn extends Piece
             }
         }
     }
-    public boolean checkfrount(int x,int y){
+    public boolean checkFrount()
+    {//check the piece is pawn
         return true;
     }
     public String getColor(){
