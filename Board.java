@@ -3,6 +3,7 @@ public class Board
 {
     private static Piece[][] table=new Piece[8][8];
     private static int order=1;
+    private boolean evolve=false;
     public Board(){
         
         for(int i=0;i<8;i++){
@@ -67,6 +68,7 @@ public class Board
         }
         table[y1][x1].setPosition(x2,y2);
         table[y2][x2]=table[y1][x1];
+        this.evolve=table[y2][x2].evolve();
         table[y1][x1]=null;
         order=order*-1;
     }
@@ -105,5 +107,25 @@ public class Board
                 }
             }
         }
+    }
+    public void evolve(String type,String color) throws Exception{
+        if(type.equals("rook")){
+            table[y][x]=new Rook(x,y,color);
+        }
+        else if(type.equals("queen")){
+            table[y][x]=new Queen(x,y,color);
+        }
+        else if(type.equals("knight")){
+            table[y][x]=new Knight(x,y,color);
+        }
+        else if(type.equals("bishop")){
+            table[y][x]=new Bishop(x,y,color);
+        }
+        else{
+            throw new Exception();
+        }
+    }
+    public boolean getEvolve(){
+        return this.evolve;
     }
 }
