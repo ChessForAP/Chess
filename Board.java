@@ -4,6 +4,8 @@ public class Board
     private static Piece[][] table=new Piece[8][8];
     private static int order=1;
     private boolean evolve=false;
+    private int x1;
+    private int y1;
     public Board(){
         
         for(int i=0;i<8;i++){
@@ -69,6 +71,8 @@ public class Board
         table[y1][x1].setPosition(x2,y2);
         table[y2][x2]=table[y1][x1];
         this.evolve=table[y2][x2].evolve();
+        this.x=x2;
+        this.y=y2;
         table[y1][x1]=null;
         order=order*-1;
     }
