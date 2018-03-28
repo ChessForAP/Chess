@@ -1,11 +1,18 @@
-//upload by Violet Yu--Zoe Du--Yolanda Su--Violet Yu
+
+/**
+ * Write a description of class Game here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+//upload by Violet Yu--Zoe Du--Yolanda Su--Violet Yu--Kevin Jiang--Yolanda Su
 import java.util.*;
 public class Game
 {
     Player player1;
     Player player2;
     Board table;
-    public  Game(){
+    public  Game() throws Exception{
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("Please Enter the name of User1 :");
         player1= new Player("W",scanner1.next());
@@ -16,11 +23,22 @@ public class Game
         while(true){
             printOutBoard();
             move(player1);
+            if(table.getEvolve()){
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("change this Pawn to(rook or queen or knight or bishop):");
+                String change=scanner.next();
+                table.evolve(change);
+            }
             printOutBoard();
             move(player2);
+            if(table.getEvolve()){
+                Scanner condition = new Scanner(System.in);
+                Scanner scanner = new Scanner(System.in);
+                table.evolve(scanner.next());
+            }
         }
     }
-    public void move(Player player){
+    public void move(Player player) throws Exception{
         Scanner condition = new Scanner(System.in);
         System.out.println("");
         System.out.println(player.getName()+" move piece at:");
@@ -35,6 +53,7 @@ public class Game
             System.out.println("illegal moving");
             move(player);
         }
+        
     }
     public void printOutBoard(){
         Piece[][] board=table.getBoard();
@@ -59,3 +78,6 @@ public class Game
         }
     }
 }
+
+
+
