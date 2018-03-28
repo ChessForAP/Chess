@@ -1,39 +1,50 @@
-//upload by all of as--Kevin Jiang--Violet Yu---Zoe Du--Yolanda Su--Carol Li
+
+/**
+ * Write a description of class Board here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+
+//upload by all of as--Kevin Jiang--Violet Yu---Zoe Du--Yolanda Su--Carol Li--Kevin Jiang--Yolanda Su
 public class Board
 {
     private static Piece[][] table=new Piece[8][8];
     private static int order=1;
-    private boolean evolve=false;
-    private int x1;
-    private int y1;
+    private static boolean evolve=false;
+    private static int x;
+    private static int y;
     public Board(){
         
         for(int i=0;i<8;i++){
-            table[1][i]=Pawn.create("W",i);
-            table[6][i]=Pawn.create("B",i);
+            table[1][i]=Pawn.create("W",i,1);
+            table[6][i]=Pawn.create("B",i,6);
             
         }
-        table[0][0]=Rook.create("W",0);
-        table[0][7]=Rook.create("W",7);
-        table[7][0]=Rook.create("B",0);
-        table[7][7]=Rook.create("B",7);
-        table[0][1]=Knight.create("W",1);
-        table[0][6]=Knight.create("W",6);
-        table[7][1]=Knight.create("B",1);
-        table[7][6]=Knight.create("B",6);
-        table[0][2]=Bishop.create("W",2);
-        table[0][5]=Bishop.create("W",5);
-        table[7][2]=Bishop.create("B",2);
-        table[7][5]=Bishop.create("B",5);
-        table[0][3]=Queen.create("W",3);
-        table[7][3]=Queen.create("B",3);
-        table[0][4]=King.create("W",4);
-        table[7][4]=King.create("B",4);
+        table[0][0]=Rook.create("W",0,0);
+        table[0][7]=Rook.create("W",7,0);
+        table[7][0]=Rook.create("B",0,7);
+        table[7][7]=Rook.create("B",7,7);
+        table[0][1]=Knight.create("W",1,0);
+        table[0][6]=Knight.create("W",6,0);
+        table[7][1]=Knight.create("B",1,7);
+        table[7][6]=Knight.create("B",6,7);
+        table[0][2]=Bishop.create("W",2,0);
+        table[0][5]=Bishop.create("W",5,0);
+        table[7][2]=Bishop.create("B",2,7);
+        table[7][5]=Bishop.create("B",5,7);
+        table[0][3]=Queen.create("W",3,0);
+        table[7][3]=Queen.create("B",3,7);
+        table[0][4]=King.create("W",4,0);
+        table[7][4]=King.create("B",4,7);
+
     }
     public Piece[][] getBoard(){
         return table;
     }
     public static void move(String str1,String str2) throws Exception{
+        str1=str1.toLowerCase();
+        str2=str2.toLowerCase();
         char[] ip=str1.toCharArray();
         char[] fp=str2.toCharArray();
         int x1=((int)ip[0]-97);
@@ -70,9 +81,9 @@ public class Board
         }
         table[y1][x1].setPosition(x2,y2);
         table[y2][x2]=table[y1][x1];
-        this.evolve=table[y2][x2].evolve();
-        this.x=x2;
-        this.y=y2;
+        evolve=table[y2][x2].evolve();
+        x=x2;
+        y=y2;
         table[y1][x1]=null;
         order=order*-1;
     }
@@ -109,21 +120,31 @@ public class Board
                 if(table[y1][x1]!=null){
                     return true;
                 }
+                
             }
         }
     }
-    public void evolve(String type,String color) throws Exception{
-        if(type.equals("rook")){
-            table[y][x]=new Rook(x,y,color);
+    public void evolve(String type) throws Exception{
+        type=type.toLowerCase();
+        table[y][x].die();
+        String color;
+        if(order==1){
+            color="B";
         }
-        else if(type.equals("queen")){
-            table[y][x]=new Queen(x,y,color);
+        else{
+            color="W"; 
         }
-        else if(type.equals("knight")){
-            table[y][x]=new Knight(x,y,color);
+        if(type.substring(0,1).equals("r")){
+            table[y][x]=Rook.create(color,x,y);
         }
-        else if(type.equals("bishop")){
-            table[y][x]=new Bishop(x,y,color);
+        else if(type.substring(0,1).equals("q")){
+            table[y][x]=Queen.create(color,x,y);
+        }
+        else if(type.substring(0,2).equals("kn")){
+            table[y][x]=Knight.create(color,x,y);
+        }
+        else if(type.substring(0,1).equals("b")){
+            table[y][x]=Bishop.create(color,x,y);
         }
         else{
             throw new Exception();
