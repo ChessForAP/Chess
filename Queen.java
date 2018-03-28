@@ -1,20 +1,22 @@
-//upload by Violet Yu--Kevin Jiang--Violet Yu--Carol Li
+
+/**
+ * Write a description of class Queen here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+//upload by Violet Yu--Kevin Jiang--Violet Yu--Carol Li--Yolanda Su
 public class Queen extends Piece
 {
    private int x;
    private int y;
    private String color;
-   private Queen(String color)
+   private Queen(String color,int x,int y)
    {
-       this.color= color;
-       if(color.equals("W")){
-            this.y=0;
-        }
-        else{
-            this.y=7;
-        }
-       this.x=3;
-       super.num+=1;
+        this.color=color;
+        this.x=x;
+        this.y=y;
+        Piece.num+=1;
    }
    public String getColor(){
         return color;
@@ -23,12 +25,11 @@ public class Queen extends Piece
    {
         return color+"Q     ";
    }
-   public static Queen create(String color,int x)
+   public static Queen create(String color,int x,int y)
    {
-        
        if(checkNum())
         {
-            return new Queen(color);
+            return new Queen(color,x,y);
         }
         else{
             throw new Error("more than 32 ");
