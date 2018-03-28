@@ -1,20 +1,22 @@
-//upload by Zoe Du
+ 
+/**
+ * Write a description of class Knight here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+//upload by Zoe Du--Yolanda Su
 public class Knight extends Piece
 {
     private int x;
     private int y;
     private String color;
-    private Knight(String color,int x)
+    private Knight(String color,int x,int y)
     {
         this.color=color;
-        if(color.equals("W")){
-            this.y=0;
-        }
-        else{
-            this.y=7;
-        }
-        super.num+=1;
+        Piece.num+=1;
         this.x=x;
+        this.y=y;
     }
     public String getColor(){
         return color;
@@ -23,11 +25,11 @@ public class Knight extends Piece
     {
         return color+"Kn    ";
     }
-    public static Knight create(String color,int x)
+    public static Knight create(String color,int x,int y)
     {
         if(checkNum())
         {
-            return new Knight(color,x);
+            return new Knight(color,x,y);
         }
         else
         {
