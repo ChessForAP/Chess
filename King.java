@@ -1,4 +1,11 @@
-//upload by Violet Yu--Kevin Jiang--Zoe Du--Carol Li
+
+/**
+ * Write a description of class King here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+//upload by Violet Yu--Kevin Jiang--Zoe Du--Carol Li--Yolanda Su
 public class King extends Piece
 {
    private int x;
