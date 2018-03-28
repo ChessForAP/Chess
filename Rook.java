@@ -5,7 +5,7 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-//upload by Zoe Du--Kevin Jiang--Violet Yu---Yolanda Su--Carol Li
+//upload by Zoe Du--Kevin Jiang--Violet Yu---Zoe Du--Carol Li--Yolanda Su
 public class Rook extends Piece
 {
     private String color;
