@@ -1,4 +1,11 @@
-//upload by Zoe Du--Violet Yu---Zoe Du--Yolanda Su--Kevin Jiang
+
+/**
+ * Write a description of class Chess here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+//upload by Zoe Du--Violet Yu---Zoe Du--Yolanda Su--Kevin Jiang--Yolanda Su
 public abstract class Piece
 {
     private String color;
@@ -17,12 +24,17 @@ public abstract class Piece
             return false;
         }
     }
+    public boolean evolve(){
+        return false;
+    }
     public int kill(int x,int y,String color)throws Exception{
-        
         return 0;
     }
     
     public boolean checkFrount(){
         return false;
+    }
+    public void die() throws Exception{
+        throw new Exception();
     }
 }
