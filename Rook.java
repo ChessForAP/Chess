@@ -1,20 +1,22 @@
-//upload by Zoe Du--Kevin Jiang--Violet Yu---Zoe Du--Carol Li
+
+/**
+ * Write a description of class Rook here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+//upload by Zoe Du--Kevin Jiang--Violet Yu---Zoe Du--Carol Li--Yolanda Su
 public class Rook extends Piece
 {
     private String color;
     private int x;
     private int y;
-    private Rook(String color,int x)
+    private Rook(String color,int x,int y)
    {
-       this.color=color;
-       if(color.equals("W")){
-            this.y=0;
-        }
-        else{
-            this.y=7;
-        }
-       super.num+=1;
-       this.x=x;
+        this.color=color;
+        this.x=x;
+        this.y=y;
+        Piece.num+=1;
    }
    public String getColor(){
         return color;
@@ -23,11 +25,11 @@ public class Rook extends Piece
    {
         return this.color+"R     ";
    }
-   public static Rook create(String color,int x)
+   public static Rook create(String color,int x,int y)
    {
         if(checkNum())
         {
-            return new Rook(color,x);
+            return new Rook(color,x,y);
         }
         else{
             throw new Error("more than 32 ");
@@ -48,3 +50,5 @@ public class Rook extends Piece
         }
     }
 }
+
+
