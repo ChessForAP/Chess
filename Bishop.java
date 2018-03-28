@@ -1,20 +1,22 @@
-//upload by all of as--Zoe Du--Yolanda Su--Carol Li--Kevin Jiang
+
+/**
+ * Write a description of class Bishop here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+//upload by all of as--Zoe Du--Yolanda Su--Carol Li--Yolanda Su
 public class Bishop extends Piece
 {
     private String color;
     private int x;
     private int y;
-    private Bishop(String color,int x)
+    private Bishop(String color,int x,int y)
    {
-       this.color= color;
-       if(color.equals("W")){
-            this.y=0;
-        }
-        else{
-            this.y=7;
-        }
-       super.num+=1;
-       this.x=x;
+        this.color=color;
+        this.x=x;
+        this.y=y;
+        Piece.num+=1;
    }
    public String getColor(){
         return color;
@@ -23,11 +25,11 @@ public class Bishop extends Piece
    {
         return color+"B     ";
    }
-   public static Bishop create(String color,int x)
+   public static Bishop create(String color,int x,int y)
    {
         if(checkNum())
         {
-            return new Bishop(color,x);
+            return new Bishop(color,x,y);
         }
         else{
             throw new Error("more than 32 ");
@@ -49,3 +51,4 @@ public class Bishop extends Piece
         }
     }
 }
+
