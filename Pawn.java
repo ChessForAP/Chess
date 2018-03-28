@@ -1,27 +1,29 @@
-//upload by Kevin Jiang--Violet Yu--Zoe Du--Yolanda Su--Zoe Du
+
+/**
+ * Write a description of class Pawn here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+//upload by Kevin Jiang--Violet Yu--Zoe Du--Yolanda Su--Zoe Du--Kevin Jiang--Yolanda Su
 public class Pawn extends Piece
 {
     private String color;
     private int x;
     private int y;
     private boolean var=true;
-    private Pawn(String color,int x)
+    private Pawn(String color,int x,int y)
     {
         this.color=color;
-        if(color.equals("W")){
-            this.y=1;
-        }
-        else{
-            this.y=6;
-        }
         this.x=x;
+        this.y=y;
         Piece.num+=1;
     }
-    public static Pawn create(String color,int x)
+    public static Pawn create(String color,int x,int y)
     {
         if(checkNum())
         {
-            return new Pawn(color,x);
+            return new Pawn(color,x,y);
         }
         else
         {
@@ -117,4 +119,25 @@ public class Pawn extends Piece
     public String getColor(){
         return this.color;
     }
+    public void die(){
+        Piece.num-=1;
+    }
+    public boolean evolve(){
+        if(color.equals("W")){
+            if(this.y==7)
+            {
+                return true;
+            }
+        }
+        else{
+            if(this.y==0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+
+
