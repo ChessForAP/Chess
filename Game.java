@@ -1,11 +1,4 @@
-
-/**
- * Write a description of class Game here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-//upload by Violet Yu--Zoe Du--Yolanda Su--Violet Yu--Kevin Jiang--Yolanda Su
+//upload by Violet Yu--Zoe Du--Yolanda Su--Violet Yu--Kevin Jiang--Yolanda Su--Kevin Jiang--Violet Yu
 import java.util.*;
 public class Game
 {
@@ -43,17 +36,37 @@ public class Game
         System.out.println("");
         System.out.println(player.getName()+" move piece at:");
         String str1=condition.next();
-        condition = new Scanner(System.in);
-        System.out.println("to place:");
-        String str2=condition.next();
-        try{
-            player.move(str1,str2);
+        if(str1.equals("0-0-0")){
+            if(table.checkCastling("left",player1.getColor())){
+                table.castling("left",player1.getColor());
+            }
+            else{
+                System.out.println("can't castling");
+                move(player);
+            }
         }
-        catch(Exception e){
-            System.out.println("illegal moving");
-            move(player);
+        else if(str1.equals("0-0")){
+            if(table.checkCastling("right",player1.getColor())){
+                table.castling("right",player1.getColor());
+            }
+            else{
+                System.out.println("can't castling");
+                move(player);
+            }
         }
+        else{
+            condition = new Scanner(System.in);
+            System.out.println("to place:");
+            String str2=condition.next();
         
+            try{
+                player.move(str1,str2);
+            }
+            catch(Exception e){
+                System.out.println("illegal moving");
+                move(player);
+            }
+        }
     }
     public void printOutBoard(){
         Piece[][] board=table.getBoard();
@@ -78,6 +91,3 @@ public class Game
         }
     }
 }
-
-
-
