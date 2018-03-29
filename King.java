@@ -1,16 +1,10 @@
-
-/**
- * Write a description of class King here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-//upload by Violet Yu--Kevin Jiang--Zoe Du--Carol Li--Yolanda Su
+//upload by Violet Yu--Kevin Jiang--Zoe Du--Carol Li--Kevin Jiang--Violet Yu
 public class King extends Piece
 {
    private int x;
    private int y;
    private String color;
+   private boolean var=true;
    private King(String color,int x,int y)
    {
        this.color=color;
@@ -40,6 +34,7 @@ public class King extends Piece
             if(Math.abs(this.x-x)==1 || Math.abs(this.y-y)==1){
                 this.x=x;
                 this.y=y;
+                var=false;
             }
             else{
                 throw new Exception();
@@ -49,4 +44,22 @@ public class King extends Piece
             throw new Error("out of table");
         }
     }
+    public void move(String dir){
+        if(dir.equals("left")){
+            this.x=2;
+        }
+        else{
+            this.x=6;
+        }
+    }
+    public boolean castling(){
+        return var;
+    }
+    public int getX(){
+        return this.x;
+    }
+    public int getY(){
+        return this.y;
+    }
+     
 }
