@@ -9,7 +9,6 @@ public class Game
         ChessTester ct=new ChessTester("C:/Users/Gemini Jiang/Chess/新建文本文档.txt");
         System.out.println("Please Enter the name of User1 :");
         player1= new Player("W",getString(ct));
-        Scanner scanner2 = new Scanner(System.in);
         System.out.println("Please Enter the name of User2 :");
         player2= new Player("B",getString(ct));
         table=new Board();
