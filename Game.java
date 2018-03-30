@@ -62,8 +62,16 @@ public class Game
             try{
                 player.move(str1,str2);
             }
-            catch(Exception e){
+            catch(MoveException e){
                 System.out.println("illegal moving");
+                move(player);
+            }
+            catch(MyException e){
+                System.out.println("Not your chess");
+                move(player);
+            }
+            catch(KillException e){
+                System.out.println("can't kill yourself");
                 move(player);
             }
         }

@@ -51,28 +51,28 @@ public class Board
         {
             if(table[y1][x1].getColor().equals("B")) //check don't have the same color
             {
-                throw new Exception();
+                throw new MyException();
             }
         }
         else
         {
             if(table[y1][x1].getColor().equals("W")) //check don't have the same color
             {
-                throw new Exception();
+                throw new MyException();
             }
         }
         if(check(x1,x2,y1,y2)){
-            throw new Exception();
+            throw new MoveException();
         }
         if(table[y2][x2]!=null) //find if there have a null point
         {
             if((table[y2][x2].getColor()).equals(table[y1][x1].getColor())) //check don't have the same color
             {
-                throw new Exception();
+                throw new KillException();
             }
             if(table[y1][x1].kill(x2,y2,table[y2][x2].getColor())==1)//check if the piece is pawn, and if it fit the role
             {
-                throw new Exception();
+                throw new KillException();
             }
         }
         table[y1][x1].setPosition(x2,y2);

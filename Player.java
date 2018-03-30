@@ -19,8 +19,14 @@ public class Player
         try{
             Board.move(str1,str2);
         }
-        catch(Exception e){
-            throw new Exception();
+        catch(MyException e){
+            throw new MyException();
+        }
+        catch(MoveException e){
+            throw new MoveException();
+        }
+        catch(KillException e){
+            throw new KillException();
         }
     }
 }
