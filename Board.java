@@ -86,11 +86,10 @@ public class Board
     public static boolean check(int x1,int x2,int y1,int y2) throws Exception{
         if((Math.abs(x1-x2)==2 && Math.abs(y1-y2)==1)||(Math.abs(x1-x2)==1 && Math.abs(y1-y2)==2))//if the piece move follow the knight,keep going
         {
-            return false;
+            return false;  
         }
         else{
-            while(true){
-                if(Math.abs(x1-x2)<=1 || Math.abs(y1-y2)<=1){
+            if(Math.abs(x1-x2)<=1 || Math.abs(y1-y2)<=1){
                     if(table[y2][x2]==null && Math.abs(x1-x2)==1 && table[y1][x1].checkFrount())//check is the piece is Pawn
                     {//can't toward lean when no piece in that place
                         return true;
@@ -101,6 +100,8 @@ public class Board
                     }
                     return false;
                 }
+            while(true){
+                
                 if(x1<x2-1){
                     x1++;
                 }
@@ -116,7 +117,10 @@ public class Board
                 if(table[y1][x1]!=null){
                     return true;
                 }
-                
+                if((x1==x2 || x1==x2-1 || x1==x2+1) && (y1==y2 || y1==y2-1 || y1==y2+1))
+                {
+                    return false;
+                }
             }
         }
     }
