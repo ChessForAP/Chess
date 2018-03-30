@@ -6,12 +6,12 @@ public class Game
     Player player2;
     Board table;
     public  Game() throws Exception{
-        Scanner scanner1 = new Scanner(System.in);
+        ChessTester ct=new ChessTester("C:/Users/Gemini Jiang/Chess/新建文本文档.txt");
         System.out.println("Please Enter the name of User1 :");
-        player1= new Player("W",scanner1.next());
+        player1= new Player("W",getString(ct));
         Scanner scanner2 = new Scanner(System.in);
         System.out.println("Please Enter the name of User2 :");
-        player2= new Player("B",scanner2.next());
+        player2= new Player("B",getString(ct));
         table=new Board();
         while(true){
             printOutBoard();
@@ -19,7 +19,7 @@ public class Game
             if(table.getEvolve()){
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("change this Pawn to(rook or queen or knight or bishop):");
-                String change=scanner.next();
+                String change=getString(ct);
                 table.evolve(change);
             }
             printOutBoard();
@@ -27,15 +27,14 @@ public class Game
             if(table.getEvolve()){
                 Scanner condition = new Scanner(System.in);
                 Scanner scanner = new Scanner(System.in);
-                table.evolve(scanner.next());
+                table.evolve(getString(ct));
             }
         }
     }
-    public void move(Player player) throws Exception{
-        Scanner condition = new Scanner(System.in);
+    public void move(Player player,ChessTester ct) throws Exception{
         System.out.println("");
         System.out.println(player.getName()+" move piece at:");
-        String str1=condition.next();
+        String str1=getString(ct);
         if(str1.equals("0-0-0")){
             if(table.checkCastling("left",player1.getColor())){
                 table.castling("left",player1.getColor());
@@ -55,9 +54,8 @@ public class Game
             }
         }
         else{
-            condition = new Scanner(System.in);
             System.out.println("to place:");
-            String str2=condition.next();
+            String str2=getString(ct);
         
             try{
                 player.move(str1,str2);
@@ -96,6 +94,16 @@ public class Game
         for(int i=65;i<73;i++){
             System.out.print((char)i);
             System.out.print("      ");
+        }
+    }
+    private String getString(ChessTester ct) throws Exception{
+        String move=ct.getNext();
+        if(move!=null){
+            return move;
+        }
+        else{
+            Scanner condition = new Scanner(System.in);
+            return condition.next();
         }
     }
 }
