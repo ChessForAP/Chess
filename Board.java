@@ -8,14 +8,13 @@ public class Board
     private static int x1=-1;
     private static int y;
     private static int y1=-1;
-    private King wk=King.create("W",4,0);
-    private King bk=King.create("B",4,7);
+    private static King wk=King.create("W",4,0);
+    private static King bk=King.create("B",4,7);
+    
     public Board(){
-        
         for(int i=0;i<8;i++){
             table[1][i]=Pawn.create("W",i,1);
             table[6][i]=Pawn.create("B",i,6);
-            
         }
         table[0][0]=Rook.create("W",0,0);
         table[0][7]=Rook.create("W",7,0);
@@ -33,7 +32,6 @@ public class Board
         table[7][3]=Queen.create("B",3,7);
         table[0][4]=wk;
         table[7][4]=bk;
-
     }
     public Piece[][] getBoard(){
         return table;
@@ -51,32 +49,35 @@ public class Board
         {
             if(table[y1][x1].getColor().equals("B")) //check don't have the same color
             {
-                throw new MyException();
+                throw new Exception();
             }
         }
         else
         {
             if(table[y1][x1].getColor().equals("W")) //check don't have the same color
             {
-                throw new MyException();
+                throw new Exception();
             }
         }
         if(check(x1,x2,y1,y2)){
-            throw new MoveException();
+            throw new Exception();
         }
         if(table[y2][x2]!=null) //find if there have a null point
         {
             if((table[y2][x2].getColor()).equals(table[y1][x1].getColor())) //check don't have the same color
             {
-                throw new KillException();
+                throw new Exception();
             }
             if(table[y1][x1].kill(x2,y2,table[y2][x2].getColor())==1)//check if the piece is pawn, and if it fit the role
             {
-                throw new KillException();
+                throw new Exception();
             }
         }
         table[y1][x1].setPosition(x2,y2);
         table[y2][x2]=table[y1][x1];
+        checkMate(x2,y2);
+        
+        
         evolve=table[y2][x2].evolve();
         x=x2;
         y=y2;
@@ -175,7 +176,8 @@ public class Board
     public boolean checked(int x,int y,String color)throws Exception{
         return horizontal(x,y,color)||vertical(x,y,color)||diagonal(x,y,color)||sun(x,y,color);
     }
-    public boolean vertical(int x,int y,String s)throws Exception{
+    public static boolean vertical(int x,int y,String s)throws Exception{
+        
         boolean up= false;
         boolean down= false;
         for(int i=y+1;i<8;i++){
@@ -198,7 +200,8 @@ public class Board
         }
         return up||down;
     }
-    public boolean horizontal(int x,int y,String s)throws Exception{
+    public static boolean horizontal(int x,int y,String s)throws Exception{
+        
         boolean left= false;
         boolean right= false;
         for(int i=x+1;i<8;i++){
@@ -221,7 +224,8 @@ public class Board
         }
         return left||right;
     }
-    public boolean diagonal(int x,int y,String s)throws Exception{
+    public static boolean diagonal(int x,int y,String s)throws Exception{
+        
         int i=1;
         while(x+i<8 && y+i<8){
             if(table[y+i][x+i].kill(x,y,s)==1){
@@ -268,51 +272,53 @@ public class Board
         }
         return false;
     }
-    public boolean sun(int x,int y,String s)throws Exception{
+    public static boolean sun(int x,int y,String s)throws Exception{
+        
+        
         if(x<=5&&y<=6){
-            if(table[y+1][x+2].kill(x,y,s)==2){
+            if(table[y+1][x+2]!=null && table[y+1][x+2].kill(x,y,s)==2){
                 set(x+2,y+1);
                 return true;
             }
         }
         if(x<=6&&y<=5){
-            if(table[y+2][x+1].kill(x,y,s)==2){
+            if(table[y+2][x+1]!=null && table[y+2][x+1].kill(x,y,s)==2){
                 set(x+1,y+2);
                 return true;
             }
         }
         if(x<=6&&y>=2){
-            if(table[y-2][x+1].kill(x,y,s)==2){
+            if(table[y-2][x+1]!=null && table[y-2][x+1].kill(x,y,s)==2){
                 set(x+1,y-2);
                 return true;
             }
         }
         if(x<=5&&y>=1){
-            if(table[y-1][x+2].kill(x,y,s)==2){
+            if(table[y-1][x+2]!=null && table[y-1][x+2].kill(x,y,s)==2){
                 set(x+2,y-1);
                 return true;
             }
         }
         if(x>=1&&y<=5){
-            if(table[y+2][x-1].kill(x,y,s)==2){
+            if(table[y+2][x-1]!=null && table[y+2][x-1].kill(x,y,s)==2){
                 set(x-1,y+2);
                 return true;
             }
         }
         if(x>=2&&y<=6){
-            if(table[y+1][x-2].kill(x,y,s)==2){
+            if(table[y+1][x-2]!=null && table[y+1][x-2].kill(x,y,s)==2){
                 set(x-2,y+1);
                 return true;
             }
         }
         if(x>=2&&y>=1){
-            if(table[y-1][x-2].kill(x,y,s)==2){
+            if(table[y-1][x-2]!=null && table[y-1][x-2].kill(x,y,s)==2){
                 set(x-2,y-1);
                 return true;
             }
         }
         if(x>=1&&y>=2){
-            if(table[y-2][x-1].kill(x,y,s)==2){
+            if(table[y-2][x-1]!=null && table[y-2][x-1].kill(x,y,s)==2){
                 set(x-1,y-2);
                 return true;
             }
@@ -320,7 +326,6 @@ public class Board
         return false;
     }
     public boolean checkCastling(String dir,String color)throws Exception{
-        
         if(dir.equals("left")&&color.equals("W")){
             for(int i=1;i<4;i++){
                 if(!(table[0][i]==null)){
@@ -377,18 +382,61 @@ public class Board
         table[y][4+(x1/2)]=table[y][x];
         table[y][x]=null;
     }
-    private void set(int x,int y){
-        if(this.x==-1){
-            this.x1=x;
-            this.y1=y;
+    private static void set(int xx,int yy){
+        if(x==-1){
+            x1=xx;
+            y1=yy;
         }
         else{
-            this.x1=10;
-            this.y1=10;
+            x1=10;
+            y1=10;
         }
     }
-    private void set(){
-        this.x1=-1;
-        this.y1=-1;
+    private static void set(){
+        x1=-1;
+        y1=-1;
+    }
+    
+    public static String checkMate(int x,int y) throws Exception
+    {
+        //走的这步棋有没有在将别人
+        if(table[y][x].kill(wk.getX(),wk.getY(),wk.getColor())==2){
+            return "Check Mate";
+        }
+        else if(table[y][x].kill(bk.getX(),bk.getY(),bk.getColor())==2){
+            return "Check Mate";
+        }
+        //走完这步棋有没有让自己的王被将
+        //我不会写exception
+        if(sun(wk.getX(),wk.getY(),wk.getColor())){
+            throw new Exception();
+        }
+        else if(sun(bk.getX(),bk.getY(),bk.getColor())){
+            throw new Exception();
+        }
+        else if(diagonal(wk.getX(),wk.getY(),wk.getColor())){
+            throw new Exception();
+        }
+        else if(diagonal(bk.getX(),bk.getY(),bk.getColor())){
+            throw new Exception();
+        }
+        else if(horizontal(wk.getX(),wk.getY(),wk.getColor())){
+            throw new Exception();
+        }
+        else if(horizontal(bk.getX(),bk.getY(),bk.getColor()))
+        {
+            throw new Exception();
+        }
+        else if(vertical(wk.getX(),wk.getY(),wk.getColor()))
+        {
+            throw new Exception();
+        }
+        else if(vertical(bk.getX(),bk.getY(),bk.getColor()))
+        {
+            throw new Exception();
+        }
+        else{
+            return "";
+        }
     }
 }
