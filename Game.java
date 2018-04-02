@@ -6,7 +6,7 @@ public class Game
     Player player2;
     Board table;
     public  Game() throws Exception{
-        ChessTester ct=new ChessTester("C:/Users/Gemini Jiang/Chess/新建文本文档.txt");
+        ChessTester ct=new ChessTester("C:/Users/13811/Desktop/ChessTest/Castling.txt");
         System.out.println("Please Enter the name of User1 :");
         player1= new Player("W",getString(ct));
         System.out.println("Please Enter the name of User2 :");
@@ -14,7 +14,7 @@ public class Game
         table=new Board();
         while(true){
             printOutBoard();
-            move(player1);
+            move(player1,ct);
             if(table.getEvolve()){
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("change this Pawn to(rook or queen or knight or bishop):");
@@ -22,7 +22,7 @@ public class Game
                 table.evolve(change);
             }
             printOutBoard();
-            move(player2);
+            move(player2,ct);
             if(table.getEvolve()){
                 Scanner condition = new Scanner(System.in);
                 Scanner scanner = new Scanner(System.in);
@@ -40,7 +40,7 @@ public class Game
             }
             else{
                 System.out.println("can't castling");
-                move(player);
+                move(player,ct);
             }
         }
         else if(str1.equals("0-0")){
@@ -49,7 +49,7 @@ public class Game
             }
             else{
                 System.out.println("can't castling");
-                move(player);
+                move(player,ct);
             }
         }
         else{
@@ -61,15 +61,15 @@ public class Game
             }
             catch(MoveException e){
                 System.out.println("illegal moving");
-                move(player);
+                move(player,ct);
             }
             catch(MyException e){
                 System.out.println("Not your chess");
-                move(player);
+                move(player,ct);
             }
             catch(KillException e){
                 System.out.println("can't kill yourself");
-                move(player);
+                move(player,ct);
             }
         }
     }
