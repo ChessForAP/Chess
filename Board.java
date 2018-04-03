@@ -1,3 +1,11 @@
+
+/**
+ * Write a description of class Board here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+
 //upload by all of as--Kevin Jiang--Violet Yu---Zoe Du--Yolanda Su--Carol Li--Kevin Jiang--Yolanda Su
 public class Board
 {
@@ -47,16 +55,24 @@ public class Board
         int y2=((int)fp[1]-49);
         if(order==1) 
         {
-            if(table[y1][x1].getColor().equals("B")) //check don't have the same color
+            if(table[y1][x1]==null)
             {
-                throw new Exception();
+                throw new MyException();
+            }
+            else if(table[y1][x1].getColor().equals("B")) //check don't have the same color
+            {
+                throw new MyException();
             }
         }
         else
         {
-            if(table[y1][x1].getColor().equals("W")) //check don't have the same color
+            if(table[y1][x1]==null)
             {
-                throw new Exception();
+                throw new MyException();
+            }
+            else if(table[y1][x1].getColor().equals("W")) //check don't have the same color
+            {
+                throw new MyException();
             }
         }
         if(check(x1,x2,y1,y2)){
@@ -66,11 +82,11 @@ public class Board
         {
             if((table[y2][x2].getColor()).equals(table[y1][x1].getColor())) //check don't have the same color
             {
-                throw new Exception();
+                throw new MyException();
             }
             if(table[y1][x1].kill(x2,y2,table[y2][x2].getColor())==1)//check if the piece is pawn, and if it fit the role
             {
-                throw new Exception();
+                throw new MyException();
             }
         }
         table[y1][x1].setPosition(x2,y2);
@@ -181,19 +197,19 @@ public class Board
         boolean up= false;
         boolean down= false;
         for(int i=y+1;i<8;i++){
-            if(table[i][x].kill(x,y,s)==1){
+            if(table[i][x]!=null&&table[i][x].kill(x,y,s)==1){
                 break;
             }
-            else if(table[i][x].kill(x,y,s)==2){
+            else if(table[i][x]!=null&&table[i][x].kill(x,y,s)==2){
                 set(x,i);
                 return true;
             }
         }
         for(int i=y-1;i>=0;i--){
-            if(table[i][x].kill(x,y,s)==1){
+            if(table[i][x]!=null&&table[i][x].kill(x,y,s)==1){
                 break;
             }
-            else if(table[i][x].kill(x,y,s)==2){
+            else if(table[i][x]!=null&&table[i][x].kill(x,y,s)==2){
                 set(x,i);
                 return true;
             }
@@ -205,19 +221,19 @@ public class Board
         boolean left= false;
         boolean right= false;
         for(int i=x+1;i<8;i++){
-            if(table[y][i].kill(x,y,s)==1){
+            if(table[y][i]!=null && table[y][i].kill(x,y,s)==1){
                 break;
             }
-            else if(table[y][i].kill(x,y,s)==2){
+            else if(table[y][i]!=null&&table[y][i].kill(x,y,s)==2){
                 set(i,y);
                 return true;
             }
         }
         for(int i=x-1;i>=0;i--){
-            if(table[y][i].kill(x,y,s)==1){
+            if(table[y][i]!=null&&table[y][i].kill(x,y,s)==1){
                 break;
             }
-            else if(table[y][i].kill(x,y,s)==2){
+            else if(table[y][i]!=null&&table[y][i].kill(x,y,s)==2){
                 set(i,y);
                 return true;
             }
@@ -399,15 +415,15 @@ public class Board
     
     public static String checkMate(int x,int y) throws Exception
     {
-        //×ßµÄÕâ²½ÆåÓĞÃ»ÓĞÔÚ½«±ğÈË
+        //èµ°çš„è¿™æ­¥æ£‹æœ‰æ²¡æœ‰åœ¨å°†åˆ«äºº
         if(table[y][x].kill(wk.getX(),wk.getY(),wk.getColor())==2){
             return "Check Mate";
         }
         else if(table[y][x].kill(bk.getX(),bk.getY(),bk.getColor())==2){
             return "Check Mate";
         }
-        //×ßÍêÕâ²½ÆåÓĞÃ»ÓĞÈÃ×Ô¼ºµÄÍõ±»½«
-        //ÎÒ²»»áĞ´exception
+        //èµ°å®Œè¿™æ­¥æ£‹æœ‰æ²¡æœ‰è®©è‡ªå·±çš„ç‹è¢«å°†
+        //æˆ‘ä¸ä¼šå†™exception
         if(sun(wk.getX(),wk.getY(),wk.getColor())){
             throw new Exception();
         }

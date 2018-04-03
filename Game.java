@@ -7,7 +7,7 @@ public class Game
     Board table;
     
     public  Game() throws Exception{
-        ChessTester ct=new ChessTester("/Users/SNCzazhi/Desktop/未命名.txt");
+        ChessTester ct=new ChessTester("/Users/SNCzazhi/Desktop/CheckMate2.txt");
         System.out.println("Please Enter the name of User1 :");
         player1= new Player("W",getString(ct));
         System.out.println("Please Enter the name of User2 :");
