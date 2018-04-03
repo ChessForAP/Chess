@@ -5,8 +5,9 @@ public class Game
     Player player1;
     Player player2;
     Board table;
+    
     public  Game() throws Exception{
-        ChessTester ct=new ChessTester("C:/Users/13811/Desktop/ChessTest/Castling.txt");
+        ChessTester ct=new ChessTester("/Users/SNCzazhi/Desktop/未命名.txt");
         System.out.println("Please Enter the name of User1 :");
         player1= new Player("W",getString(ct));
         System.out.println("Please Enter the name of User2 :");
@@ -53,11 +54,10 @@ public class Game
             }
         }
         else{
-            System.out.println("to place:");
-            String str2=getString(ct);
-        
+            String str2=str1.substring(0,2);
+            String str3=str1.substring(3,5);
             try{
-                player.move(str1,str2);
+                player.move(str2,str3);
             }
             catch(MoveException e){
                 System.out.println("illegal moving");
