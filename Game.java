@@ -71,6 +71,10 @@ public class Game
                 System.out.println("can't kill yourself");
                 move(player,ct);
             }
+            catch(CheckException e){
+                System.out.println("you're checked");
+                move(player,ct);
+            }
         }
     }
     public void printOutBoard(){

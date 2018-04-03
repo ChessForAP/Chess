@@ -28,5 +28,8 @@ public class Player
         catch(KillException e){
             throw new KillException();
         }
+        catch(CheckException e){
+            throw new CheckException();
+        }
     }
 }

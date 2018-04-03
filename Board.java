@@ -422,34 +422,33 @@ public class Board
         else if(table[y][x].kill(bk.getX(),bk.getY(),bk.getColor())==2){
             return "Check Mate";
         }
-        //走完这步棋有没有让自己的王被将
-        //我不会写exception
+        
         if(sun(wk.getX(),wk.getY(),wk.getColor())){
-            throw new Exception();
+            throw new CheckException();
         }
         else if(sun(bk.getX(),bk.getY(),bk.getColor())){
-            throw new Exception();
+            throw new CheckException();
         }
         else if(diagonal(wk.getX(),wk.getY(),wk.getColor())){
-            throw new Exception();
+            throw new CheckException();
         }
         else if(diagonal(bk.getX(),bk.getY(),bk.getColor())){
-            throw new Exception();
+            throw new CheckException();
         }
         else if(horizontal(wk.getX(),wk.getY(),wk.getColor())){
-            throw new Exception();
+            throw new CheckException();
         }
         else if(horizontal(bk.getX(),bk.getY(),bk.getColor()))
         {
-            throw new Exception();
+            throw new CheckException();
         }
         else if(vertical(wk.getX(),wk.getY(),wk.getColor()))
         {
-            throw new Exception();
+            throw new CheckException();
         }
         else if(vertical(bk.getX(),bk.getY(),bk.getColor()))
         {
-            throw new Exception();
+            throw new CheckException();
         }
         else{
             return "";
