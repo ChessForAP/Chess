@@ -197,10 +197,10 @@ public class Board
         boolean up= false;
         boolean down= false;
         for(int i=y+1;i<8;i++){
-            if(table[i][x]!=null&&table[i][x].kill(x,y,s)==1){
+            if(table[i][x]!=null && table[i][x].kill(x,y,s)==1){
                 break;
             }
-            else if(table[i][x]!=null&&table[i][x].kill(x,y,s)==2){
+            else if(table[i][x]!=null && table[i][x].kill(x,y,s)==2){
                 set(x,i);
                 return true;
             }
@@ -209,7 +209,8 @@ public class Board
             if(table[i][x]!=null&&table[i][x].kill(x,y,s)==1){
                 break;
             }
-            else if(table[i][x]!=null&&table[i][x].kill(x,y,s)==2){
+            else 
+            if(table[i][x]!=null&&table[i][x].kill(x,y,s)==2){
                 set(x,i);
                 return true;
             }
@@ -255,10 +256,10 @@ public class Board
         }
         i=1;
         while(x+i<8 && y-i>=0){
-            if(table[y-i][x+i].kill(x,y,s)==1){
+            if(table[y-i][x+i]!=null&&table[y-i][x+i].kill(x,y,s)==1){
                 break;
             }
-            else if(table[y-i][x+i].kill(x,y,s)==2){
+            else if(table[y-i][x+i]!=null&&table[y-i][x+i].kill(x,y,s)==2){
                 set(x+i,y-i);
                 return true;
             }
@@ -266,10 +267,10 @@ public class Board
         }
         i=1;
         while(x-i>=0 && y-i>=0){
-            if(table[y-i][x-i].kill(x,y,s)==1){
+            if(table[y-i][x-i]!=null&&table[y-i][x-i].kill(x,y,s)==1){
                 break;
             }
-            else if(table[y-i][x-i].kill(x,y,s)==2){
+            else if(table[y-i][x-i]!=null&&table[y-i][x-i].kill(x,y,s)==2){
                 set(x-i,y-i);
                 return true;
             }
@@ -277,10 +278,10 @@ public class Board
         }
         i=1;
         while(x-i>=0 && y+i<8){
-            if(table[y+i][x-i].kill(x,y,s)==1){
+            if(table[y+i][x-i]!=null&&table[y+i][x-i].kill(x,y,s)==1){
                 break;
             }
-            else if(table[y+i][x-i].kill(x,y,s)==2){
+            else if(table[y+i][x-i]!=null&&table[y+i][x-i].kill(x,y,s)==2){
                 set(x-i,y+i);
                 return true;
             }

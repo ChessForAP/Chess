@@ -50,5 +50,19 @@ public class Bishop extends Piece
             throw new Error("out of table");
         }
     }
+    public int kill(int x, int y,String color){
+        if(this.color.equals(color)){
+            return 1;
+        }
+        if(Math.abs(this.x-x)==2 || Math.abs(y-this.y)==1){
+                return 2;
+            }
+            else if(Math.abs(this.x-x)==1 || Math.abs(y-this.y)==2){
+                return 2;
+            }
+            else{
+                return 1;
+            }
+    }
 }
 

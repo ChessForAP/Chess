@@ -54,4 +54,15 @@ public class Knight extends Piece
             throw new Error("out of table");
         }
     }
+    public int kill(int x,int y,String color){
+        if(this.color.equals(color)){
+            return 1;
+        }
+        if(this.x-x==this.y-y || this.x-x==y-this.y){
+                return 2;
+            }
+            else{
+                return 1;
+            }
+    }
 }

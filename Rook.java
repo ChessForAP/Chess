@@ -55,4 +55,15 @@ public class Rook extends Piece
             this.x=5;
         }
     }
+    public int kill(int x,int y,String color){
+        if(this.color.equals(color)){
+            return 1;
+        }
+        if(this.x==x || this.y==y){
+            return 2;
+        }
+        else{
+            return 1;
+        }
+    }
 }
