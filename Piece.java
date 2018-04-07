@@ -43,4 +43,7 @@ public abstract class Piece
     public void move(String dir){
         throw new Error("only King/Rook");
     }
+    public int enpass(){
+        return 0;
+    }
 }
