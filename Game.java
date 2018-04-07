@@ -53,6 +53,15 @@ public class Game
                 move(player,ct);
             }
         }
+        else if(str.equals("enpassant")){
+            if(table.enpass()){
+                table.enpass(player1.getColor());
+            }
+            else{
+                System.out.println("illgal moving");
+                move(player1,ct);
+            }
+        }
         else{
             String str2=str1.substring(0,2);
             String str3=str1.substring(3,5);
