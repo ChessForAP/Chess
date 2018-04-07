@@ -95,6 +95,7 @@ public class Board
         
         
         evolve=table[y2][x2].evolve();
+        enpass=enpass();
         x=x2;
         y=y2;
         table[y1][x1]=null;
@@ -465,5 +466,28 @@ public class Board
             right=table[y][x].enpass()*table[y][x+1].enpass()==60;
         }
         return left||right;
+    }
+    public void enpass(String color){
+        if(table[y][x-1].enpass()*table[y][x].enpass()==60){
+            if(color.equals("W")){
+                table[y+1][x]=table[y][x-1];
+            }
+            else{
+                table[y-1][x]=table[y][x-1];
+            }
+            table[y][x-1].move("right");
+            table[y][x-1]=new Chess();
+        }
+        else{
+            if(color.equals("W")){
+                table[y+1][x]=table[y][x+1];
+            }
+            else{
+                table[y-1][x]=table[y][x+1];
+            }
+            table[y][x-1].move("left");
+            table[y][x+1]=new Chess();
+        }
+        table[y][x]=new Chess();
     }
 }
