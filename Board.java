@@ -455,4 +455,15 @@ public class Board
             return "";
         }
     }
+    public boolean enpass(){
+        boolean left=false;
+        boolean right=false;
+        if(this.x>0){
+            left=table[y][x-1].enpass()*table[y][x].enpass()==60;
+        }
+        if(this.x<7){
+            right=table[y][x].enpass()*table[y][x+1].enpass()==60;
+        }
+        return left||right;
+    }
 }
