@@ -137,6 +137,23 @@ public class Pawn extends Piece
         }
         return false;
     }
+    public int enpass(){
+        int var1=0;
+        int var2=0;
+        if(this.color=="W"){
+            var1=3;
+        }
+        else{
+            var1=5;
+        }
+        if(this.y==3){
+            var2=-2;
+        }
+        if(this.y==4){
+            var2=2;
+        }
+        return var1*var2;
+    }
 }
 
 
