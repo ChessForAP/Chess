@@ -154,6 +154,20 @@ public class Pawn extends Piece
         }
         return var1*var2;
     }
+    public void move(String dir){
+        if(color.equals("W")){
+            this.y++;
+        }
+        else{
+            this.y--;
+        }
+        if(dir.equals("right")){
+            this.x++;
+        }
+        else{
+            this.x--;
+        }
+    }
 }
 
 

@@ -18,7 +18,7 @@ public class Board
     private static int y1=-1;
     private static King wk=King.create("W",4,0);
     private static King bk=King.create("B",4,7);
-    
+    private static boolean enpass; 
     public Board(){
         for(int i=0;i<8;i++){
             table[1][i]=Pawn.create("W",i,1);
@@ -101,7 +101,7 @@ public class Board
         table[y1][x1]=null;
         order=order*-1;
     }
-    public boolean over(String color){
+    public boolean over(String color)throws Exception{
         if(!(checked(color))){
             return false;
         }
@@ -114,7 +114,7 @@ public class Board
         }
         return judge(k);
     }
-    private boolean judge(King k){
+    private boolean judge(King k)throws Exception{
         if(!(this.x1==-1||this.x1==10)){
             if(checked(x1,y1,table[y1][x1].getColor())){
                 return false;
@@ -176,7 +176,7 @@ public class Board
             }
         }
     }
-    public void evolve(String type) throws Exception{
+    public static void evolve(String type) throws Exception{
         type=type.toLowerCase();
         table[y][x].die();
         String color;
@@ -205,7 +205,7 @@ public class Board
     public boolean getEvolve(){
         return this.evolve;
     }
-    private boolean checked(String color)throws Exception{
+    private  boolean checked(String color)throws Exception{
         boolean hor;
         boolean ver;
         boolean dia;
@@ -490,38 +490,41 @@ public class Board
             return "";
         }
     }
-    public boolean enpass(){
+    public static boolean enpass(){
         boolean left=false;
         boolean right=false;
-        if(this.x>0){
+        if(x>0 && table[y][x-1]!=null){
             left=table[y][x-1].enpass()*table[y][x].enpass()==60;
         }
-        if(this.x<7){
+        if(x<7 && table[y][x+1]!=null){
             right=table[y][x].enpass()*table[y][x+1].enpass()==60;
         }
         return left||right;
     }
-    public void enpass(String color){
-        if(table[y][x-1].enpass()*table[y][x].enpass()==60){
+    
+    public static void enpass(String color){
+        if(table[y][x-1]!=null && table[y][x-1].enpass()*table[y][x].enpass()==60){
             if(color.equals("W")){
-                table[y+1][x]=table[y][x-1];
-            }
-            else{
                 table[y-1][x]=table[y][x-1];
             }
-            table[y][x-1].move("right");
-            table[y][x-1]=new Chess();
-        }
-        else{
-            if(color.equals("W")){
-                table[y+1][x]=table[y][x+1];
-            }
             else{
+                table[y+1][x]=table[y][x-1];
+            }
+            table[y][x-1].move("right");
+            table[y][x-1]=null;
+        }
+        else {
+            if(table[y][x+1]!=null && color.equals("W")){
                 table[y-1][x]=table[y][x+1];
             }
-            table[y][x-1].move("left");
-            table[y][x+1]=new Chess();
+            else if(table[y][x-1]!=null){
+                table[y+1][x]=table[y][x+1];
+            }
+            table[y][x+1].move("left");
+            table[y][x+1]=null;
+            
+            
         }
-        table[y][x]=new Chess();
+        table[y][x]=null;
     }
 }

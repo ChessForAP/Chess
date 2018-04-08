@@ -30,11 +30,17 @@ public class King extends Piece
         }
    }
    public void setPosition(int x,int y) throws Exception{
-        if(0<=x && x<=7 && y<=7 && 0<=y){
+       if(0<=x && x<=7 && y<=7 && 0<=y){
             if(Math.abs(this.x-x)==1 || Math.abs(this.y-y)==1){
                 this.x=x;
                 this.y=y;
                 var=false;
+            }
+            else if(this.x-x==2){
+                throw new LongCastling();
+            }
+            else if(x-this.x==2){
+                throw new ShortCastling();
             }
             else{
                 throw new Exception();

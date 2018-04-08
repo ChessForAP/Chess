@@ -5,13 +5,12 @@ public class Game
     Player player1;
     Player player2;
     Board table;
-    
     public  Game() throws Exception{
-        ChessTester ct=new ChessTester("/Users/SNCzazhi/Desktop/CheckMate2.txt");
-        System.out.println("Please Enter the name of User1 :");
-        player1= new Player("W",getString(ct));
-        System.out.println("Please Enter the name of User2 :");
-        player2= new Player("B",getString(ct));
+        ChessTester ct=new ChessTester("/Users/SNCzazhi/Desktop/1.game");
+        //System.out.println("Please Enter the name of User1 :");
+        player1= new Player("W","player1");
+        //System.out.println("Please Enter the name of User2 :");
+        player2= new Player("B","player2");
         table=new Board();
         while(true){
             printOutBoard();
@@ -22,6 +21,10 @@ public class Game
                 String change=getString(ct);
                 table.evolve(change);
             }
+            if(table.over(player2.getColor())){
+                System.out.println(player1.getName()+"win");
+                break;
+            }
             printOutBoard();
             move(player2,ct);
             if(table.getEvolve()){
@@ -29,13 +32,17 @@ public class Game
                 Scanner scanner = new Scanner(System.in);
                 table.evolve(getString(ct));
             }
+            if(table.over(player1.getColor())){
+                System.out.println(player1.getName()+"win");
+                break;
+            }
         }
     }
     public void move(Player player,ChessTester ct) throws Exception{
         System.out.println("");
         System.out.println(player.getName()+" move piece at:");
         String str1=getString(ct);
-        if(str1.equals("0-0-0")){
+        /*if(str1.equals("0-0-0")){
             if(table.checkCastling("left",player1.getColor())){
                 table.castling("left",player1.getColor());
             }
@@ -52,8 +59,8 @@ public class Game
                 System.out.println("can't castling");
                 move(player,ct);
             }
-        }
-        else if(str.equals("enpassant")){
+        }*/
+        if(str1.equals("enpassant")){
             if(table.enpass()){
                 table.enpass(player1.getColor());
             }
@@ -67,6 +74,24 @@ public class Game
             String str3=str1.substring(3,5);
             try{
                 player.move(str2,str3);
+            }
+            catch(LongCastling e){
+                if(table.checkCastling("left",player1.getColor())){
+                    table.castling("left",player1.getColor());
+                }
+                else{
+                    System.out.println("can't castling");
+                    move(player,ct);
+                }
+            }
+            catch(ShortCastling e){
+                if(table.checkCastling("right",player1.getColor())){
+                    table.castling("right",player1.getColor());
+                }
+                else{
+                    System.out.println("can't castling");
+                    move(player,ct);
+                }
             }
             catch(MoveException e){
                 System.out.println("illegal moving");
