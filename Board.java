@@ -11,7 +11,7 @@ public class Board
 {
     private static Piece[][] table=new Piece[8][8];
     private static int order=1;
-    private static boolean evolve=false;
+    private static boolean promotion=false;
     private static int x;
     private static int x1=-1;
     private static int y;
@@ -94,7 +94,7 @@ public class Board
         checkMate(x2,y2);
         
         
-        evolve=table[y2][x2].evolve();
+        promotion=table[y2][x2].promotion();
         enpass=enpass();
         x=x2;
         y=y2;
@@ -176,7 +176,7 @@ public class Board
             }
         }
     }
-    public static void evolve(String type) throws Exception{
+    public static void promotion(String type) throws Exception{
         type=type.toLowerCase();
         table[y][x].die();
         String color;
@@ -202,8 +202,8 @@ public class Board
             throw new Exception();
         }
     }
-    public boolean getEvolve(){
-        return this.evolve;
+    public boolean getPromotion(){
+        return this.promotion;
     }
     private  boolean checked(String color)throws Exception{
         boolean hor;

@@ -122,7 +122,7 @@ public class Pawn extends Piece
     public void die(){
         Piece.num-=1;
     }
-    public boolean evolve(){
+    public boolean promotion(){
         if(color.equals("W")){
             if(this.y==7)
             {

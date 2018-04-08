@@ -15,11 +15,11 @@ public class Game
         while(true){
             printOutBoard();
             move(player1,ct);
-            if(table.getEvolve()){
+            if(table.getPromotion()){
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("change this Pawn to(rook or queen or knight or bishop):");
                 String change=getString(ct);
-                table.evolve(change);
+                table.promotion(change);
             }
             if(table.over(player2.getColor())){
                 System.out.println(player1.getName()+"win");
@@ -27,10 +27,10 @@ public class Game
             }
             printOutBoard();
             move(player2,ct);
-            if(table.getEvolve()){
+            if(table.getPromotion()){
                 Scanner condition = new Scanner(System.in);
                 Scanner scanner = new Scanner(System.in);
-                table.evolve(getString(ct));
+                table.promotion(getString(ct));
             }
             if(table.over(player1.getColor())){
                 System.out.println(player1.getName()+"win");

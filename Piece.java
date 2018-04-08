@@ -19,7 +19,7 @@ public abstract class Piece
             return false;
         }
     }
-    public boolean evolve(){
+    public boolean promotion(){
         return false;
     }
     public int kill(int x,int y,String color)throws Exception{
