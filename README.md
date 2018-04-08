@@ -7,9 +7,12 @@
 -Zoe Du   
 -Kevin Jiang
 
-**Method**
+**Method:**
 
 -Castling
+
 -Checkmate
+
 -En passant
+
 -Pawn promotion
