@@ -101,6 +101,40 @@ public class Board
         table[y1][x1]=null;
         order=order*-1;
     }
+    public boolean over(String color){
+        if(!(checked(color))){
+            return false;
+        }
+        King k;
+        if(color.equals("W")){
+            k=wk;
+        }
+        else{
+            k=bk;
+        }
+        return judge(k);
+    }
+    private boolean judge(King k){
+        if(!(this.x1==-1||this.x1==10)){
+            if(checked(x1,y1,table[y1][x1].getColor())){
+                return false;
+            }
+        }
+            for(int i=0;i<3;i++){
+                if(k.getY()>=1&&k.getY()<=6){
+                    for(int j=0;j<3;j++){
+                        if(k.getX()>=1&&k.getX()<=6){
+                            if(!(checked(k.getY()+i-1,k.getX()+j-1,k.getColor()))){
+                                if(table[k.getY()+i-1][k.getX()+j-1].getColor().equals("none")){
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        return true;
+    }
     public static boolean check(int x1,int x2,int y1,int y2) throws Exception{
         if((Math.abs(x1-x2)==2 && Math.abs(y1-y2)==1)||(Math.abs(x1-x2)==1 && Math.abs(y1-y2)==2))//if the piece move follow the knight,keep going
         {
