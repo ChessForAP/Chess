@@ -6,3 +6,9 @@
 -Carol Li  
 -Zoe Du   
 -Kevin Jiang
+
+**Method**
+-Castling
+-Checkmate
+-En passant
+-Pawn promotion
