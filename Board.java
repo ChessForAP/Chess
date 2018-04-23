@@ -125,7 +125,7 @@ public class Board
                     for(int j=0;j<3;j++){
                         if(k.getX()>=1&&k.getX()<=6){
                             if(!(checked(k.getY()+i-1,k.getX()+j-1,k.getColor()))){
-                                if(table[k.getY()+i-1][k.getX()+j-1].getColor().equals("none")){
+                                if(table[k.getY()+i-1][k.getX()+j-1]==null){
                                     return false;
                                 }
                             }
@@ -209,25 +209,25 @@ public class Board
         boolean hor;
         boolean ver;
         boolean dia;
-        boolean sun;
+        boolean checkKnight;
         if(color.equals("W")){
-            hor=horizontal(wk.getX(),wk.getY(),"W");
-            ver=vertical(wk.getX(),wk.getY(),"W");
-            dia=diagonal(wk.getX(),wk.getY(),"W");
-            sun=sun(wk.getX(),wk.getY(),"W");
+            hor=checkHorizontal(wk.getX(),wk.getY(),"W");
+            ver=checkVertical(wk.getX(),wk.getY(),"W");
+            dia=checkDiagonal(wk.getX(),wk.getY(),"W");
+            checkKnight=checkKnight(wk.getX(),wk.getY(),"W");
         }
         else{
-            hor=horizontal(bk.getX(),bk.getY(),"B");
-            ver=vertical(bk.getX(),bk.getY(),"B");
-            dia=diagonal(bk.getX(),bk.getY(),"B");
-            sun=sun(bk.getX(),bk.getY(),"B");
+            hor=checkHorizontal(bk.getX(),bk.getY(),"B");
+            ver=checkVertical(bk.getX(),bk.getY(),"B");
+            dia=checkDiagonal(bk.getX(),bk.getY(),"B");
+            checkKnight=checkKnight(bk.getX(),bk.getY(),"B");
         }
-        return hor||ver||dia||sun;
+        return hor||ver||dia||checkKnight;
     }
     public boolean checked(int x,int y,String color)throws Exception{
-        return horizontal(x,y,color)||vertical(x,y,color)||diagonal(x,y,color)||sun(x,y,color);
+        return checkHorizontal(x,y,color)||checkVertical(x,y,color)||checkDiagonal(x,y,color)||checkKnight(x,y,color);
     }
-    public static boolean vertical(int x,int y,String s)throws Exception{
+    public static boolean checkVertical(int x,int y,String s)throws Exception{
         
         boolean up= false;
         boolean down= false;
@@ -252,7 +252,7 @@ public class Board
         }
         return up||down;
     }
-    public static boolean horizontal(int x,int y,String s)throws Exception{
+    public static boolean checkHorizontal(int x,int y,String s)throws Exception{
         
         boolean left= false;
         boolean right= false;
@@ -276,14 +276,14 @@ public class Board
         }
         return left||right;
     }
-    public static boolean diagonal(int x,int y,String s)throws Exception{
+    public static boolean checkDiagonal(int x,int y,String s)throws Exception{
         
         int i=1;
         while(x+i<8 && y+i<8){
-            if(table[y+i][x+i].kill(x,y,s)==1){
+            if(table[y+i][x+i]!=null&&table[y+i][x+i].kill(x,y,s)==1){
                 break;
             }
-            else if(table[y+i][x+i].kill(x,y,s)==2){
+            else if(table[y+i][x+i]!=null&&table[y+i][x+i].kill(x,y,s)==2){
                 set(x+i,y+i);
                 return true;
             }
@@ -324,7 +324,7 @@ public class Board
         }
         return false;
     }
-    public static boolean sun(int x,int y,String s)throws Exception{
+    public static boolean checkKnight(int x,int y,String s)throws Exception{
         
         
         if(x<=5&&y<=6){
@@ -433,6 +433,7 @@ public class Board
         table[y][4]=null;
         table[y][4+(x1/2)]=table[y][x];
         table[y][x]=null;
+        order*=-1;
     }
     private static void set(int xx,int yy){
         if(x==-1){
@@ -459,30 +460,30 @@ public class Board
             return "Check Mate";
         }
         
-        if(sun(wk.getX(),wk.getY(),wk.getColor())){
+        if(checkKnight(wk.getX(),wk.getY(),wk.getColor())){
             throw new CheckException();
         }
-        else if(sun(bk.getX(),bk.getY(),bk.getColor())){
+        else if(checkKnight(bk.getX(),bk.getY(),bk.getColor())){
             throw new CheckException();
         }
-        else if(diagonal(wk.getX(),wk.getY(),wk.getColor())){
+        else if(checkDiagonal(wk.getX(),wk.getY(),wk.getColor())){
             throw new CheckException();
         }
-        else if(diagonal(bk.getX(),bk.getY(),bk.getColor())){
+        else if(checkDiagonal(bk.getX(),bk.getY(),bk.getColor())){
             throw new CheckException();
         }
-        else if(horizontal(wk.getX(),wk.getY(),wk.getColor())){
+        else if(checkHorizontal(wk.getX(),wk.getY(),wk.getColor())){
             throw new CheckException();
         }
-        else if(horizontal(bk.getX(),bk.getY(),bk.getColor()))
+        else if(checkHorizontal(bk.getX(),bk.getY(),bk.getColor()))
         {
             throw new CheckException();
         }
-        else if(vertical(wk.getX(),wk.getY(),wk.getColor()))
+        else if(checkVertical(wk.getX(),wk.getY(),wk.getColor()))
         {
             throw new CheckException();
         }
-        else if(vertical(bk.getX(),bk.getY(),bk.getColor()))
+        else if(checkVertical(bk.getX(),bk.getY(),bk.getColor()))
         {
             throw new CheckException();
         }

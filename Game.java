@@ -6,7 +6,7 @@ public class Game
     Player player2;
     Board table;
     public  Game() throws Exception{
-        ChessTester ct=new ChessTester("/Users/SNCzazhi/Desktop/1.game");
+        ChessTester ct=new ChessTester("/Users/SNCzazhi/Desktop/end_game.game");
         //System.out.println("Please Enter the name of User1 :");
         player1= new Player("W","player1");
         //System.out.println("Please Enter the name of User2 :");
