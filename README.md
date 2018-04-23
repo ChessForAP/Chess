@@ -34,8 +34,8 @@ AP CS Group Work
 * There cannot be any pieces between the king and the rook.
 * The king cannot be in check, nor can the king pass through squares that are under attack by enemy pieces, or move to a square where it would result in a check. Note that castling is permissible if the rook is attacked, or if the rook crosses a square that is attacked.
 ### Checkmate
-*
+* The player whose turn it is to move is in check and has no legal move to escape check.
 ### En passant
-*
+* When a pawn advances two squares from its starting position and there is an opponent's pawn on an adjacent file next to its destination square, then the opponent's pawn can capture it en passant (in passing), and move to the square the pawn passed over.
 ### Pawn promotion
-*
+* When a pawn advances to the eighth rank, as a part of the move it is promoted and must be exchanged for the player's choice of queen, rook, bishop, or knight of the same color. Usually, the pawn is chosen to be promoted to a queen, but in some cases another piece is chosen; this is called underpromotion. 
